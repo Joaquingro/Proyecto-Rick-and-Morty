@@ -1,0 +1,63 @@
+.h1{
+    
+    color: white;
+    font-size: 40px;
+    box-shadow: 0px 0px 25px #222;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    
+    border:  yellow;
+}
+.p {
+    color: white;
+    font-size: 30px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 25px #222;
+    backdrop-filter: blur(10px);
+    border: yellow;
+}
+
+.align {
+ display: flex;
+ justify-content: inline;
+ align-items: center;
+ margin-left: 280px;
+ box-shadow: 0px 0px 25px #222;
+backdrop-filter: blur(10px);
+ width: fit-content;
+ border-radius: 10px;
+ 
+}
+
+.img{
+    width: 20em;
+    height: 20em;
+    border-radius: 8px;
+   border: white solid;
+}
+
+.buttonBack {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    
+    background-size: 200% 100%;
+    background-position: right;
+    transition: 500ms;
+    color: black;
+    margin: 5px;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .buttonBack:hover {
+    background-position: left;
+    color: white;
+    background-color: black;
+  }

@@ -1,0 +1,13 @@
+.search{
+    background-color: rgb(240, 239, 245);
+    color: rgb(34, 23, 196);
+    
+    height: 30px; 
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    
+}
+.search:hover {
+    background-color: black;
+    color: white;
+  }
