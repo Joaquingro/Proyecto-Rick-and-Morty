@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { addFavorite, deleteFavorite } from '../../redux/actions';
 import { useState, useEffect } from 'react';
+
 export function Card({name, gender, onClose, species, image, id}) {
    const [isFav, setIsFav] = useState(false);
    const dispatch = useDispatch();
@@ -15,14 +16,16 @@ export function Card({name, gender, onClose, species, image, id}) {
       });
    }, [myFavoritos]);
 
-   const handleFavorite = () => {
-   if(isFav){
+   const handleFavorite =  () => {
+     
+      if(isFav){
       setIsFav(false);
-     dispatch(deleteFavorite(id));
+        dispatch(deleteFavorite(id));
    } else{
       setIsFav(true);
-    dispatch(addFavorite({name, gender, onClose, species, image, id}));
+       dispatch(addFavorite({name, gender, onClose, species, image, id}));
       }
+  
    }
     return (
       

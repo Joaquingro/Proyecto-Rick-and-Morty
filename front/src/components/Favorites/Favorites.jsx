@@ -7,6 +7,7 @@ import style from  './Favorites.module.css'
 export function Favorites ({myFavorites}){
     const dispatch = useDispatch();
     
+
     const handleOrder = (event) => {
         const value = event.target.value;
         dispatch(orderCards(value));
@@ -37,8 +38,9 @@ export function Favorites ({myFavorites}){
         </div>
         <div className= {style.card}>
         {
-            myFavorites.length && myFavorites.map(fav => {
+            myFavorites.length && myFavorites.map((fav, index) => {
                 return <Card
+                key = {index}
                 id = {fav.id}
                name = {fav.name}
                species = {fav.species}
