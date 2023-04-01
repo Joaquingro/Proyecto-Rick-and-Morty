@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { addFavorite, deleteFavorite } from '../../redux/actions';
 import { useState, useEffect } from 'react';
+import 'animate.css';
 
-export function Card({name, gender, onClose, species, image, id}) {
+export function Card({hideAnimation , setHideAnimation, setShowAnimation, showAnimation, name, gender, onClose, species, image, id}) {
    const [isFav, setIsFav] = useState(false);
+   const [animation, setAnimation] = useState(false);
    const dispatch = useDispatch();
    const myFavoritos = useSelector((s) =>s.myFavorites);
    useEffect(() => {
@@ -23,18 +25,26 @@ export function Card({name, gender, onClose, species, image, id}) {
         dispatch(deleteFavorite(id));
    } else{
       setIsFav(true);
+      setAnimation(true);
        dispatch(addFavorite({name, gender, onClose, species, image, id}));
       }
   
    }
     return (
       
-      <div className = {style.card}>
+      <div className = {`${style.card} ${showAnimation ? 'animate__animated animate__backInLeft' : ''}  ${hideAnimation ? 'animate__animated animate__backOutDown' : ''}`}
+      onAnimationEnd={() => {
+         setShowAnimation(false);
+         if (hideAnimation) {
+           setHideAnimation(null);
+         }
+       }}
+      >
          {
             isFav ? (
-      <button onClick={handleFavorite}>❤️</button>
+      <button className = {`${style.fav} ${animation ? 'animate__animated animate__heartBeat' : ''}`} onClick={handleFavorite}>❤️</button>
          ) : (
-      <button onClick={handleFavorite}>🤍</button>
+      <button className = {style.fav} onClick={handleFavorite}>🤍</button>
             )
           }
          <button className = {style.boton}onClick={onClose}>X</button>
@@ -43,7 +53,7 @@ export function Card({name, gender, onClose, species, image, id}) {
          
          <h2 className = {style.tags}>{species}</h2>
          <h2 className = {style.tags}>{gender}</h2>
-         <img className = {style.card} src={image} alt="" />
+         <img className = {style.image} src={image} alt="" />
          </Link>
       </div>
    );

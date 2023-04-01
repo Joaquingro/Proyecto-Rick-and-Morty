@@ -4,11 +4,18 @@
    font-size: 40px;
    text-align: center;
    color: white;
+   font-family: 'Get Schwifty', sans-serif;;
    
 }
+
+@font-face {
+   font-family: 'Get Schwifty';
+   src: url('../src/get_schwifty.ttf') format('truetype');
+ }
 .align{
    display: flex;
    justify-content: space-around;
    
 
 }
+ 

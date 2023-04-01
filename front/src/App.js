@@ -11,6 +11,7 @@ import About from './components/About/About';
 import Detail from './components/Detail/Detail';
 import Form from './components/Form/Form';
 import  Favorites  from './components/Favorites/Favorites';
+import 'animate.css';
 function App () {
   
   const navigate  = useNavigate();
@@ -34,13 +35,17 @@ function App () {
  }, [access]);
   
   const [characters, setCharacters] = useState([]);
-  
+  const [showAnimation, setShowAnimation] = useState(false);
+  const [hideAnimation, setHideAnimation] = useState(false);
+
   function onSearch(character) {
     fetch(`http://localhost:3001/rickandmorty/onsearch/${character}`)
        .then((response) => response.json())
        .then((data) => {
           if (data.name) {
+             const newCharater = {...data};
              setCharacters((oldChars) => [...oldChars, data]);
+             setShowAnimation(newCharater.id);
           } else {
              window.alert('No hay personajes con ese ID');
           }
@@ -48,34 +53,35 @@ function App () {
  }
  
   const onClose = (id) =>{
-    setCharacters(
-      characters.filter(char => char.id !== id)
-    )
+  
+    
+    setHideAnimation(id)
+    setTimeout(() => {
+      
+      setCharacters(
+        characters.filter(char => char.id !== id)
+     );
+    }, 1000);
+   
 
   }
  
   return (
     <div>
      <div className='align'> 
-    <h1 className='title'>Rick and Morty</h1>
-    <Gif/>
+    <h1 className='title && animate__animated animate__zoomIn animate__infinite animate__slower'>Rick and Morty</h1>
+    
     </div>
     {location.pathname === '/' ? <Form login = {login} /> : <Nav onSearch = {onSearch} /> }
     
   
     <Routes>
       <Route path='/about' element={<About/>}></Route>
-      <Route path='/home' element ={<Cards  characters={characters}
+      <Route path='/home' element ={<Cards hideAnimation = {hideAnimation} setHideAnimation= {setHideAnimation} showAnimation = {showAnimation} setShowAnimation = {setShowAnimation} characters={characters}
        onClose = {onClose}/>}></Route>
        <Route path='/detail/:detailId' element= {<Detail/>}></Route>
       <Route path='/favorites' element = {<Favorites/>}></Route>
     </Routes>
-
-
-
-
-
-
 
 
 </div>
